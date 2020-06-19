@@ -20,6 +20,7 @@ namespace APBD_Kolokwium_2.Configurations
             int id = 1;
             list.Add(new Artist_Event { IdArtist = 1, IdEvent = 1, PerformanceDate = DateTime.Now.AddDays(1)});
             list.Add(new Artist_Event { IdArtist = 2, IdEvent = 1, PerformanceDate = DateTime.Now.AddDays(2) });
+            list.Add(new Artist_Event { IdArtist = 1, IdEvent = 2, PerformanceDate = DateTime.Now.AddDays(21) });
 
 
 

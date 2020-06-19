@@ -21,10 +21,20 @@ namespace APBD_Kolokwium_2.Controllers
 
 
 
-        [HttpGet]
-        public IActionResult Test()
+        [HttpGet("{id}")]
+        public IActionResult GetArtist(int id)
         {
-            return Ok("TEST COMPETED ALL OK.");
+            try
+            {
+
+                 return Ok(_service.GetArtist(id));
+
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
 
           
         }

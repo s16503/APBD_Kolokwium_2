@@ -26,7 +26,8 @@ namespace APBD_Kolokwium_2.Configurations
             var list = new List<Event>();
             int id = 1;
             list.Add(new Event { IdEvent = id, Name = "Opole 2020",StartDate = DateTime.Now, EndDate=DateTime.Now.AddDays(5) });
-        
+            list.Add(new Event { IdEvent = id+1, Name = "Festiwal muzyki Giżycko", StartDate = DateTime.Now.AddDays(20), EndDate = DateTime.Now.AddDays(30) });
+
 
 
             builder.HasData(list);
