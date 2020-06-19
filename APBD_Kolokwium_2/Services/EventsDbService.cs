@@ -1,4 +1,5 @@
 ﻿using APBD_Kolokwium_2.Models;
+using APBD_Kolokwium_2.Requests;
 using APBD_Kolokwium_2.Responses;
 using System;
 using System.Collections.Generic;
@@ -51,5 +52,31 @@ namespace APBD_Kolokwium_2.Services
             return response;
 
         }
+
+        public string UpdatePerformenceTime(int id_art, int id_ev, UpdatePerformenceTimeRequest req)
+        {
+            
+
+            var ev = (from ea in _context.Artists_Events join e in _context.Events on ea.IdEvent equals e.IdEvent
+                      where ea.IdArtist == id_art && e.StartDate > req.PerformanceDate 
+                      select  new Event 
+                      { IdEvent = e.IdEvent,Name = e.Name}).FirstOrDefault();
+
+
+            if (ev == null)
+                throw new Exception("nie znaleziono wydarzenia o takim id lub już się rozpoczęło");
+
+
+            if(req.PerformanceDate < ev.StartDate || req.PerformanceDate > ev.EndDate)
+                throw new Exception("data musi sie mieścić w przedziale czasowym trwania wydarzenia");
+
+
+            _context.Artists_Events.Add(new Artist_Event { IdArtist = id_art, IdEvent = id_ev, PerformanceDate = req.PerformanceDate });
+
+
+            return "aktualizowano";
+
+        }
+
     }
 }
